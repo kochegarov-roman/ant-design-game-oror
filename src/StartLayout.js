@@ -50,15 +50,15 @@ export class StartLayout extends React.Component {
                     <Header>
                         <div className="logo" placeholder={'Menu'}/>
                         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                            <Menu.Item key="1">
-                                <Link to={'/select-features'}>Выбрать характеристики</Link>
-                            </Menu.Item>
+                            {/*<Menu.Item key="1">*/}
+                            {/*    <Link to={'/select-features'}>Выбрать характеристики</Link>*/}
+                            {/*</Menu.Item>*/}
                             <Menu.Item key="2">
                                 <Link to={'/enter-result'}>Ввод результатов</Link>
                             </Menu.Item>
-                            <Menu.Item key="3">
-                                <Link to={'/about'}>Об игре</Link>
-                            </Menu.Item>
+                            {/*<Menu.Item key="3">*/}
+                            {/*    <Link to={'/about'}>Об игре</Link>*/}
+                            {/*</Menu.Item>*/}
                         </Menu>
                     </Header>
                     <Content
@@ -74,6 +74,7 @@ export class StartLayout extends React.Component {
                                 <Route path="/about" exact component={About}  />
                                 <Route path="/select-features" exact component={SelectFeatures}  />
                                 <Route path="/enter-result" exact component={EnterResult}  />
+                                <Route path="/" exact component={EnterResult}  />
                             </Switch>
 
 

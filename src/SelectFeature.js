@@ -5,8 +5,6 @@ import React from "react";
 
 export const SelectFeatures = () => {
 
-
-
     return(
         <Row>
             <Col sm={24} md={6} lg={8} >

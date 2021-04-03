@@ -51,10 +51,10 @@ export const EnterResult = () => {
                 <Col sm={24} md={6} lg={8}>
                     <h2>Введите характеристики через запятую</h2>
                     <Search
-                        placeholder="input search text"
+                        placeholder="введите значения"
                         allowClear
                         enterButton="Получить результат"
-                        size="large"
+                        size="small"
                         onSearch={onSearch}
                     />
                 </Col>
@@ -63,35 +63,46 @@ export const EnterResult = () => {
                 <Col sm={24} md={6} lg={8}>
                     {findProfessions && Object.entries(findProfessions).sort((a, b) =>
                         a[1].length > b[1].length ? -1 : 1).map(
-                        ([id_profession, arrFeature]) =>
+                        ([id_profession, arrFeature], ind) =>
                             arrFeature.length ?
-                                <Col span={24}>
-                                    <h3>Профессия: {name_professions[id_profession]}</h3>
+                                <Col span={24} className={'proffi'}>
+                                    <h3><Tag color="green" className={'number-proff'}>{ind+1}</Tag><span className='h0'>Профессия:</span> {name_professions[id_profession]}</h3>
                                     <p>Количество совпадений: <Tag color="magenta">{arrFeature.length}</Tag> </p>
-                                    <Timeline.Item color="red">
-                                        <p>Из них Характеристики профессий:</p>
-                                        {
-                                            intersectionFeatures(Object.keys(info.feature_professions), arrFeature).map(
-                                                id_f =>
-                                                    <p>{info.feature_professions[id_f]}</p>
-                                            )}
-                                    </Timeline.Item>
-                                    <Timeline.Item color="green">
-                                        <p>Из них Хобби, хозяйство:</p>
-                                        {
-                                            intersectionFeatures(Object.keys(info.feature_professions), arrFeature).map(
-                                                id_f =>
-                                                    <p>{info.hobby[id_f]}</p>
-                                            )}
-                                    </Timeline.Item>
-                                    <Timeline.Item color="blue">
-                                        <p>Из них Личностное развитие:</p>
-                                        {
-                                            intersectionFeatures(Object.keys(info.feature_professions), arrFeature).map(
-                                                id_f =>
-                                                    <p>{info.personal_development[id_f]}</p>
-                                            )}
-                                    </Timeline.Item>
+                                    {intersectionFeatures(Object.keys(info.feature_professions), arrFeature).length ?
+                                        <Timeline.Item color="red">
+                                            <p>Из них Характеристики профессий:</p>
+                                            {
+                                                intersectionFeatures(Object.keys(info.feature_professions), arrFeature).map(
+                                                    id_f =>
+                                                        <p>{info.feature_professions[id_f]}</p>
+                                                )}
+                                        </Timeline.Item>
+                                        : null
+                                    }
+
+                                    {intersectionFeatures(Object.keys(info.hobby), arrFeature).length ?
+                                        <Timeline.Item color="green">
+                                            <p>Из них Хобби, хозяйство: </p>
+                                            {
+                                                intersectionFeatures(Object.keys(info.hobby), arrFeature).map(
+                                                    id_f =>
+                                                        <p>{info.hobby[id_f]}</p>
+                                                )}
+                                        </Timeline.Item>
+                                        : null
+                                    }
+                                    {intersectionFeatures(Object.keys(info.personal_development), arrFeature).length ?
+                                        <Timeline.Item color="blue">
+                                            <p>Из них Личностное развитие:</p>
+                                            {
+                                                intersectionFeatures(Object.keys(info.personal_development), arrFeature).map(
+                                                    id_f =>
+                                                        <p>{info.personal_development[id_f]}</p>
+                                                )}
+                                        </Timeline.Item>
+                                        : null
+                                    }
+
                                 </Col>
                                 : null
                     )}
